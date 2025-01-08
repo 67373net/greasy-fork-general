@@ -2,9 +2,9 @@
 // @name        所有脚本
 // @namespace   lx288
 // @description 所有脚本集中管理
-// @version     0.0.1
+// @version     0.0.2
 // @author      lx288
-// @match       *
+// @match       *://*/*
 // @grant       GM_registerMenuCommand
 // @grant       GM_setClipboard
 // @grant       GM_download
