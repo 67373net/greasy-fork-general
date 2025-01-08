@@ -16,8 +16,9 @@
 // @run-at      document-end
 // @license     MIT
 // ==/UserScript==
+// https://greasyfork.org/en/scripts/523180
 
 (function() {
-    var localVar = "I am local 3";
+    var localVar = "I am local 4";
     console.log(localVar); // 输出: I am local
 })();
