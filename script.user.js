@@ -18,6 +18,6 @@
 // ==/UserScript==
 
 (function() {
-    var localVar = "I am local 2";
+    var localVar = "I am local 3";
     console.log(localVar); // 输出: I am local
 })();
