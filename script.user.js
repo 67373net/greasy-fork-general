@@ -41,13 +41,12 @@ addStyle(`a:visited, a:visited * {
   color: purple !important;
 }`);
 
-// 🟩 极简输入框
+// 🟩 popup small window
 GM_registerMenuCommand("极简窗口", () => {
   const currentUrl = window.location.href;
   const url = prompt("请输入网址:", currentUrl);
   if (url) window.open(url, '__blank', 'height=588,width=588,top=588,left=888')
 });
-
 
 // 🟠 url matcher
 function urlTrigger(urlReg, funcName) {
