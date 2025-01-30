@@ -31,9 +31,11 @@ urlTrigger(/mp\.weixin\.qq\.com/, wxConsoleStickerDownload);
 // 🟢 m-team 馒头去掉名字
 urlTrigger(/[\/\.]m-team\./, mtDelName);
 // 🟢 popout youtube chat room
-urlTrigger(/(?:live\/|watch\?v=|embed\/)([a-zA-Z0-9_-]{11})/, ytbChatPop)
+urlTrigger(/(?:live\/|watch\?v=|embed\/)([a-zA-Z0-9_-]{11})/, ytbChatPop);
 // 🟢 ytb chat realtime
-urlTrigger(/youtube\.com\/live_chat/, ytbChatRealtime)
+urlTrigger(/youtube\.com\/live_chat/, ytbChatRealtime);
+// 🟢 lx288redir
+urlTrigger(/#lx288redir/, lx288redir);
 
 // 🟩 已读链接紫色
 addStyle(`a:visited, a:visited * {
@@ -123,4 +125,10 @@ function ytbChatRealtime(){
   setTimeout(() => {
     document.querySelectorAll("tp-yt-paper-item-body.style-scope.yt-dropdown-menu")[1].click();
   }, 5888)
+}
+
+// 🟧 lx288redir
+function lx288redir(){
+  let urlMatch = location.href.match(/#lx288redir(.+)/);
+  location.href = urlMatch[1];
 }
