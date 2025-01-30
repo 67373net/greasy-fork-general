@@ -16,5 +16,4 @@
 // @license     MIT
 // @require     file:/Volumes/ssd0/proj/greasy-fork-general/local.js
 // ==/UserScript==
-
 // https://greasyfork.org/en/scripts/523180
