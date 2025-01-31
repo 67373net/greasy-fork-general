@@ -31,7 +31,7 @@
     // User Config
     // Short cut
 
-    const shortCutUserConfig = { // 我改的地方
+    const shortCutUserConfig = {
         /* Example:
         "Shift": false,
         "Ctrl": true,
@@ -41,12 +41,14 @@
     }
 
     // Obsidian
-    const obsidianUserConfig = {
+    const obsidianUserConfig = { //【】我改的地方
         "67373net": [
+            // "clips/",
             "tosee/",
             "archived/"
         ]
     }
+    if(location.href.endsWith("#weibocnToMd")) setTimeout(weibocnToMd, 5288); //【】我改的地方
 
     const guide = `
 - 使用**方向键**选择元素
@@ -214,6 +216,7 @@
     function startSelecting() {
         $('body').addClass('h2m-no-scroll'); // 防止页面滚动
         isSelecting = true;
+        // selectedElement = document.querySelector("body") //【】我改的
         // 操作指南
         tip(marked.parse(guide));
     }
@@ -399,7 +402,22 @@
         startSelecting()
     });
 
+    GM_registerMenuCommand('微博', ()=>{ //【】我修改的
+        // https://weibo.com/5157634999/PbWMn5wgg
+        // https://m.weibo.cn/status/PbWMn5wgg#weibocnToMd
+        if(location.href.includes("https://m.weibo.cn/")) weibocnToMd();
+        let urlMatch = location.href.match(/https:\/\/weibo\.com\/\d+\/([^\/\?#]+)/);
+        if(urlMatch) window.open(`https://m.weibo.cn/#lx288redir=https://m.weibo.cn/status/${urlMatch[1]}#weibocnToMd`, "_self");
+    });
+    function weibocnToMd(){
+        let markdown = convertToMarkdown(document.querySelector(".lite-page-wrap"));
+        showMarkdownModal(markdown);
+    }
 
+    GM_registerMenuCommand('body', ()=>{ //【】我修改的
+        var markdown = convertToMarkdown(document.querySelector("body"));
+        showMarkdownModal(markdown);
+    });
 
     $(document).on('mouseover', function (e) { // 开始选择
         if (isSelecting) {

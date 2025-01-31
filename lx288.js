@@ -7,15 +7,16 @@
 // @match       *://*/*
 // @grant       GM_registerMenuCommand
 // @grant       GM_setClipboard
-// @grant       GM_xmlhttpRequest
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @grant       unsafeWindow
+// @grant       GM_addStyle
 // @grant       GM_download
+// @grant       GM_xmlhttpRequest
+// @grant       unsafeWindow
 // @run-at      document-end
 // @license     MIT
 // ==/UserScript==
-// https://greasyfork.org/en/scripts/523180
+
 
 const menuHeight = 24;
 const chromeHeightSmall = 62;
@@ -36,9 +37,12 @@ urlTrigger(/(?:live\/|watch\?v=|embed\/)([a-zA-Z0-9_-]{11})/, ytbChatPop);
 urlTrigger(/youtube\.com\/live_chat/, ytbChatRealtime);
 // 🟢 lx288redir
 urlTrigger(/#lx288redir/, lx288redir);
+// 🟢 weibocnFullPic：全图，动图，live，多视频
+urlTrigger(/https:\/\/m\.weibo\.cn\//, weibocnFullPic)
+
 
 // 🟩 已读链接紫色
-addStyle(`a:visited, a:visited * {
+GM_addStyle(`a:visited, a:visited * {
   color: purple !important;
 }`);
 
@@ -100,7 +104,7 @@ function mtDelName() {
 }
 
 // 🟧 popout youtube + twitch set
-function ytbChatPop(){
+function ytbChatPop() {
   const liveId = window.location.href.match(/(?:live\/|watch\?v=|embed\/)([a-zA-Z0-9_-]{11})/)[1];
   const url_ytb = "https://www.youtube.com/live_chat?v=" + liveId;
   const url_twitch1 = "https://www.twitch.tv/popout/thebs_chen/chat?popout=";
@@ -121,14 +125,20 @@ function ytbChatPop(){
 }
 
 // 🟧 ytb chat realtime
-function ytbChatRealtime(){
+function ytbChatRealtime() {
   setTimeout(() => {
     document.querySelectorAll("tp-yt-paper-item-body.style-scope.yt-dropdown-menu")[1].click();
   }, 5888)
 }
 
 // 🟧 lx288redir
-function lx288redir(){
-  let urlMatch = location.href.match(/#lx288redir(.+)/);
-  location.href = urlMatch[1];
+function lx288redir() {
+  let urlMatch = location.href.match(/#lx288redir=(.+)/);
+  // console.log(urlMatch[1]);
+  window.open(urlMatch[1], "_self");
+}
+
+// 🟧 weibocnFullPic：全图，动图，live，多视频
+function weibocnFullPic() {
+
 }
